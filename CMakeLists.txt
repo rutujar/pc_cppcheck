@@ -36,27 +36,7 @@ ExternalProject_Add(
     BINARY_DIR          ${CMAKE_BINARY_DIR}/external/catch/build
 )
 
-# ------------------------------------------------------------------------------
-# Hippomocks
-# ------------------------------------------------------------------------------
 
-list(APPEND HIPPOMOCKS_CMAKE_ARGS
-    "-DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}"
-)
-
-ExternalProject_Add(
-    hippomocks
-    GIT_REPOSITORY      https://github.com/Bareflank/hippomocks.git
-    GIT_TAG             v1.2
-    GIT_SHALLOW         1
-    CMAKE_ARGS          ${HIPPOMOCKS_CMAKE_ARGS}
-    PREFIX              ${CMAKE_BINARY_DIR}/external/hippomocks/prefix
-    TMP_DIR             ${CMAKE_BINARY_DIR}/external/hippomocks/tmp
-    STAMP_DIR           ${CMAKE_BINARY_DIR}/external/hippomocks/stamp
-    DOWNLOAD_DIR        ${CMAKE_BINARY_DIR}/external/hippomocks/download
-    SOURCE_DIR          ${CMAKE_BINARY_DIR}/external/hippomocks/src
-    BINARY_DIR          ${CMAKE_BINARY_DIR}/external/hippomocks/build
-)
 
 # ------------------------------------------------------------------------------
 # GSL
