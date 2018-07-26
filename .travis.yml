@@ -47,8 +47,6 @@ matrix:
         packages:
           - g++-6
     script:
-      - cmake -DENABLE_CPPCHECK=ON -DCMAKE_CXX_COMPILER="g++-6" ..
-      - make
       - make check
 
   
