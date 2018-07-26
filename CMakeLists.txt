@@ -37,6 +37,27 @@ ExternalProject_Add(
 )
 
 
+# ------------------------------------------------------------------------------
+# Hippomocks
+# ------------------------------------------------------------------------------
+
+list(APPEND HIPPOMOCKS_CMAKE_ARGS
+    "-DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}"
+)
+
+ExternalProject_Add(
+    hippomocks
+    GIT_REPOSITORY      https://github.com/Bareflank/hippomocks.git
+    GIT_TAG             v1.2
+    GIT_SHALLOW         1
+    CMAKE_ARGS          ${HIPPOMOCKS_CMAKE_ARGS}
+    PREFIX              ${CMAKE_BINARY_DIR}/external/hippomocks/prefix
+    TMP_DIR             ${CMAKE_BINARY_DIR}/external/hippomocks/tmp
+    STAMP_DIR           ${CMAKE_BINARY_DIR}/external/hippomocks/stamp
+    DOWNLOAD_DIR        ${CMAKE_BINARY_DIR}/external/hippomocks/download
+    SOURCE_DIR          ${CMAKE_BINARY_DIR}/external/hippomocks/src
+    BINARY_DIR          ${CMAKE_BINARY_DIR}/external/hippomocks/build
+)
 
 # ------------------------------------------------------------------------------
 # GSL
@@ -126,36 +147,7 @@ if(ENABLE_ASTYLE)
 
 endif()
 
-# ------------------------------------------------------------------------------
-# Clang Tidy
-# ------------------------------------------------------------------------------
 
-if(ENABLE_CLANG_TIDY)
-
-    find_program(CLANG_TIDY_BIN clang-tidy-4.0)
-    find_program(RUN_CLANG_TIDY_BIN run-clang-tidy-4.0.py)
-
-    if(CLANG_TIDY_BIN STREQUAL "CLANG_TIDY_BIN-NOTFOUND")
-        message(FATAL_ERROR "unable to locate clang-tidy-4.0")
-    endif()
-
-    if(RUN_CLANG_TIDY_BIN STREQUAL "RUN_CLANG_TIDY_BIN-NOTFOUND")
-        message(FATAL_ERROR "unable to locate run-clang-tidy-4.0.py")
-    endif()
-
-    list(APPEND RUN_CLANG_TIDY_BIN_ARGS
-        -clang-tidy-binary ${CLANG_TIDY_BIN}
-        -header-filter=.*
-        -checks=clan*,cert*,misc*,perf*,cppc*,read*,mode*,-cert-err58-cpp,-misc-noexcept-move-constructor
-    )
-
-    add_custom_target(
-        tidy
-        COMMAND ${RUN_CLANG_TIDY_BIN} ${RUN_CLANG_TIDY_BIN_ARGS}
-        COMMENT "running clang tidy"
-    )
-
-endif()
 
 # ------------------------------------------------------------------------------
 # CppCheck
