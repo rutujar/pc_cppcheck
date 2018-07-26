@@ -60,6 +60,28 @@ ExternalProject_Add(
 )
 
 # ------------------------------------------------------------------------------
+# GSL
+# ------------------------------------------------------------------------------
+
+list(APPEND GSL_CMAKE_ARGS
+    "-DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}"
+)
+
+ExternalProject_Add(
+    gsl
+    GIT_REPOSITORY      https://github.com/Bareflank/GSL.git
+    GIT_TAG             v1.2
+    GIT_SHALLOW         1
+    CMAKE_ARGS          ${GSL_CMAKE_ARGS}
+    PREFIX              ${CMAKE_BINARY_DIR}/external/gsl/prefix
+    TMP_DIR             ${CMAKE_BINARY_DIR}/external/gsl/tmp
+    STAMP_DIR           ${CMAKE_BINARY_DIR}/external/gsl/stamp
+    DOWNLOAD_DIR        ${CMAKE_BINARY_DIR}/external/gsl/download
+    SOURCE_DIR          ${CMAKE_BINARY_DIR}/external/gsl/src
+    BINARY_DIR          ${CMAKE_BINARY_DIR}/external/gsl/build
+)
+
+# ------------------------------------------------------------------------------
 # CppCheck
 # ------------------------------------------------------------------------------
 
