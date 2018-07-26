@@ -16,11 +16,11 @@ public:
 
 public:
 
-    consumer(consumer &&) noexcept = default;               ///< Default move construction
-    consumer &operator=(consumer &&) noexcept = default;    ///< Default move operator
+    consumer(consumer &&) noexcept = default;               
+    consumer &operator=(consumer &&) noexcept = default;    
 
-    consumer(const consumer &) = delete;                    ///< Deleted copy construction
-    consumer &operator=(const consumer &) = delete;         ///< Deleted copy operator
+    consumer(const consumer &) = delete;                    
+    consumer &operator=(const consumer &) = delete;         
 };
 
 #endif
