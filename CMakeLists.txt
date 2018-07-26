@@ -194,25 +194,6 @@ if(ENABLE_CPPCHECK)
 
 endif()
 
-
-
-# ------------------------------------------------------------------------------
-# Valgrind
-# ------------------------------------------------------------------------------
-
-set(MEMORYCHECK_COMMAND_OPTIONS "${MEMORYCHECK_COMMAND_OPTIONS} --leak-check=full")
-set(MEMORYCHECK_COMMAND_OPTIONS "${MEMORYCHECK_COMMAND_OPTIONS} --track-fds=yes")
-set(MEMORYCHECK_COMMAND_OPTIONS "${MEMORYCHECK_COMMAND_OPTIONS} --trace-children=yes")
-set(MEMORYCHECK_COMMAND_OPTIONS "${MEMORYCHECK_COMMAND_OPTIONS} --error-exitcode=1")
-
-# ------------------------------------------------------------------------------
-# Main Executable
-# ------------------------------------------------------------------------------
-
-add_executable(ci_helloworld src/main.cpp)
-add_dependencies(ci_helloworld gsl)
-target_compile_definitions(ci_helloworld PRIVATE VIRTUAL= MAIN=main)
-
 # ------------------------------------------------------------------------------
 # Tests
 # ------------------------------------------------------------------------------
