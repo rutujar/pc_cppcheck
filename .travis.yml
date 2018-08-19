@@ -52,7 +52,7 @@ matrix:
       - make check
 
   
-    #
+  #
   # Valgrind
   #
   - os: linux
@@ -85,8 +85,6 @@ matrix:
           git diff --check HEAD^
           exit -1
         fi
-
-
   #
   # Codecov
   #
